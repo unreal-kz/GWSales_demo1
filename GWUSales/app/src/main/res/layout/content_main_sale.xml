@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:useDefaultMargins="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.makhanov.gwusales.MainActivity"
+    tools:showIn="@layout/app_bar_main_sale">
+
+
+    <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/image_view"
+            android:layout_below="@+id/textViewUser"
+            android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take a picture"
+        android:id="@+id/button"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_below="@+id/image_view"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Your are logged in as: "
+        android:id="@+id/textViewUser"
+        android:layout_below="@+id/buttonLogout"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:id="@+id/buttonLogout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Item name: "
+        android:id="@+id/textViewName"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextName"
+        android:layout_below="@+id/button"
+        android:layout_toEndOf="@+id/textViewName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Description: "
+        android:id="@+id/textViewDescription"
+        android:layout_alignTop="@+id/editTextDescription"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextDescription"
+        android:layout_below="@+id/editTextName"
+        android:layout_toEndOf="@+id/textViewDescription" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload"
+        android:id="@+id/buttonUpload"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editTextDescription"
+        android:layout_alignEnd="@+id/button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Price:"
+        android:id="@+id/textViewPrice"
+        android:layout_below="@+id/textViewUser"
+        android:layout_toEndOf="@+id/image_view" />
+
+    <RadioGroup
+        android:id="@+id/radioPrice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/textViewPrice"
+        android:layout_toEndOf="@+id/image_view">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Free"
+            android:id="@+id/radioButtonFree"
+            android:layout_below="@+id/textViewPrice"
+            android:layout_toEndOf="@+id/scrollView" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other"
+            android:id="@+id/radioButtonOther"
+            android:layout_below="@+id/radioButtonFree"
+            android:layout_toEndOf="@+id/scrollView"
+            android:visibility="invisible" />
+        </RadioGroup>
+
+
+
+</RelativeLayout>
