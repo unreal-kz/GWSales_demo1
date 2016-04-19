@@ -36,6 +36,14 @@
                 android:layout_margin="4dp"
                 android:text="Item description text"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemDescription"
+                android:layout_margin="4dp"
+                android:text="Price: "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

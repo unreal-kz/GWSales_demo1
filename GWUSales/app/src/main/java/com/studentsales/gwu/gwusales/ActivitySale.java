@@ -29,8 +29,6 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -62,7 +60,6 @@ public class ActivitySale extends AppCompatActivity implements GoogleApiClient.C
     Bitmap bitmap;
     RadioButton radiobtn;
     private RadioGroup radioPriceGroup;
-    private String password;
     private String struser;
 
     protected synchronized void buildGoogleApiClient() {
@@ -79,49 +76,44 @@ public class ActivitySale extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main_sale);
         buildGoogleApiClient();
 
+        buttonTakePicture = (Button) findViewById(R.id.button);
+        buttonUpload = (Button) findViewById(R.id.buttonUpload);
+        logout = (Button) findViewById(R.id.buttonLogout);
+        imageView = (ImageView) findViewById(R.id.image_view);
+
         final ParseUser currentUser = ParseUser.getCurrentUser();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (currentUser == null) {
-                    startActivity(new Intent(ActivitySale.this, LoginActivity.class));
-                    ActivitySale.this.finish();
-                } else {
-                    //password = currentUser.get("password").toString();
-                    struser = currentUser.getUsername().toString();
-                    TextView txtuser = (TextView) findViewById(R.id.textViewUser);
-                    txtuser.setText("Your are logged in as: " + struser);
-                    buttonTakePicture = (Button) findViewById(R.id.button);
-                    imageView = (ImageView) findViewById(R.id.image_view);
-                    buttonTakePicture.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            dispatchTakePictureIntent();
-                        }
-                    });
+        if (currentUser == null) {
+            startActivity(new Intent(ActivitySale.this, LoginActivity.class));
+            ActivitySale.this.finish();
+        } else {
+            //password = currentUser.get("password").toString();
+            struser = currentUser.getUsername();
+            TextView txtuser = (TextView) findViewById(R.id.textViewUser);
+            txtuser.setText("Your are logged in as: " + struser);
 
-                    buttonUpload = (Button) findViewById(R.id.buttonUpload);
-                    buttonUpload.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            uploadImage();
-                        }
-                    });
-
-                    logout = (Button) findViewById(R.id.buttonLogout);
-                    logout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ParseUser.logOut();
-                            finish();
-                            Intent intent = new Intent(ActivitySale.this, LoginActivity.class);
-                            startActivity(intent);
-                            ActivitySale.this.finish();
-                        }
-                    });
+            buttonTakePicture.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    dispatchTakePictureIntent();
                 }
-            }
-        }, 0);
+            });
+            buttonUpload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    uploadImage();
+                }
+            });
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ParseUser.logOut();
+                    Intent intent = new Intent(ActivitySale.this, LoginActivity.class);
+                    startActivity(intent);
+                    ActivitySale.this.finish();
+                }
+            });
+        }
     }
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -204,8 +196,6 @@ public class ActivitySale extends AppCompatActivity implements GoogleApiClient.C
             imageView.setImageBitmap(bitmap);
 
         } catch (FileNotFoundException e) {
-            // handle errors
-        } catch (IOException e) {
             // handle errors
         } finally {
             if (parcelFD != null)

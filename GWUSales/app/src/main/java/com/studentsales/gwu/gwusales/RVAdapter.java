@@ -35,6 +35,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         holder.itemNameTV.setText(items.get(position).itemName);
         holder.itemDescpTV.setText(items.get(position).itemDescp);
         holder.itemPicIV.setImageBitmap(items.get(position).itemPhotoId);
+        holder.itemPriceTV.setText(items.get(position).itemPrice);
 
         holder.cardView.setClickable(true);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +44,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
                 Toast.makeText(v.getContext(),
                         "Clicked: "+ items.get(position).itemId,
                         Toast.LENGTH_SHORT).show();
-                v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), MapsActivity.class).putExtra("location",items.get(position).itemId));
+                v.getContext().startActivity(new Intent(v.getContext().getApplicationContext(), MapsActivity.class));
             }
         });
 
@@ -66,6 +67,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
         CardView cardView;
         TextView itemNameTV;
         TextView itemDescpTV;
+        TextView itemPriceTV;
         ImageView itemPicIV;
 
         public ItemViewHolder(View itemView) {
@@ -74,6 +76,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ItemViewHolder> {
             itemNameTV = (TextView)itemView.findViewById(R.id.itemName);
             itemDescpTV = (TextView)itemView.findViewById(R.id.itemDescription);
             itemPicIV = (ImageView)itemView.findViewById(R.id.itemPic);
+            itemPriceTV = (TextView) itemView.findViewById(R.id.itemPrice);
         }
     }
 

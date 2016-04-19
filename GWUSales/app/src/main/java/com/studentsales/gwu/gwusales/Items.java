@@ -22,6 +22,7 @@ public class Items {
     String itemDescp;
     Bitmap itemPhotoId;
     String itemId;
+    String itemPrice;
 
     List<ParseFile> parseFilesList;
     private Bitmap bmp;
@@ -29,11 +30,12 @@ public class Items {
     public Items() {
     }
 
-    public Items(String itemName, String itemDescp, String itemId, Bitmap itemPhotoId) {
+    public Items(String itemName, String itemDescp, String itemId, Bitmap itemPhotoId, String itemPrice) {
         this.itemName = itemName;
         this.itemDescp = itemDescp;
         this.itemPhotoId = itemPhotoId;
         this.itemId = itemId;
+        this.itemPrice = itemPrice;
     }
 
     public static List<Items> items;
@@ -55,9 +57,10 @@ public class Items {
                         itemName = parseObject.get("name").toString();
                         itemDescription = parseObject.get("description").toString();
                         itemId = parseObject.getObjectId();
+                        itemPrice = parseObject.get("itemPrice").toString();
                         try {
                             bmp = BitmapFactory.decodeByteArray(parseFile.getData(), 0, parseFile.getData().length);
-                            items.add(new Items(itemName, itemDescription, itemId, bmp));
+                            items.add(new Items(itemName, itemDescription, itemId, bmp, itemPrice));
                         } catch (ParseException parseEx) {
                             parseEx.printStackTrace();
                         }
