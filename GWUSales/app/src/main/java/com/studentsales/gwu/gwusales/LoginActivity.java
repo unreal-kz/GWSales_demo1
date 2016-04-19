@@ -72,15 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
-                            if ((boolean)parseUser.get("emailVerified") != true) {
+                            if ((boolean) parseUser.get("emailVerified") != true) {
                                 Toast.makeText(getApplicationContext(), "Check your email first", Toast.LENGTH_LONG).show();
                             } else {
-                            Intent intent = new Intent(
-                                    LoginActivity.this,
-                                    ActivitySale.class);
-                            startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
-                            finish();}
+                                Intent intent = new Intent(LoginActivity.this, ActivitySale.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(), "Successfully logged in", Toast.LENGTH_SHORT).show();
+                                LoginActivity.this.finish();
+                            }
                         } else {
                             //redirect to sign up or make visible "sign up" button
                             Toast.makeText(getApplicationContext(), "No such user, please sign up", Toast.LENGTH_SHORT).show();
@@ -98,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this,
                         SignupActivity.class);
                 startActivity(intent);
-
+                //LoginActivity.this.finish();
             }
         });
 

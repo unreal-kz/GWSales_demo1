@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity
                 Intent myIntent = new Intent(MainActivity.this, ActivitySale.class);
 //                startActivityForResult(myIntent, 1);
                 startActivity(myIntent);
+                MainActivity.this.finish();
                 //myIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile());
             }
         });

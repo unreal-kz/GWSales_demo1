@@ -84,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .center(new LatLng(latitude,longitude))
                 .radius(150).strokeColor(Color.GRAY)
                 .fillColor(Color.TRANSPARENT));
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLoc, 16));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLoc, 16));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLoc, 16));
     }
 }
